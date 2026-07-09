@@ -60,6 +60,13 @@ services:
     restart: always
     ports:
       - 12340:12340
+    environment:
+      - SW_AGENT_NAME=ts-auth-service
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=skywalking-oap:11800
+      - NACOS_ADDRS=nacos:8848
+    depends_on:
+      - skywalking-oap
+      - nacos
     networks:
       - my-network
 
@@ -88,6 +95,13 @@ services:
     restart: always
     ports:
       - 15678:15678
+    environment:
+      - SW_AGENT_NAME=ts-verification-code-service
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=skywalking-oap:11800
+      - NACOS_ADDRS=nacos:8848
+    depends_on:
+      - skywalking-oap
+      - nacos
     networks:
       - my-network
 
