@@ -132,6 +132,10 @@ spring:
           uri: lb://${PRESERVE_SERVICE_HOST:ts-preserve-service}
           predicates:
             - Path=/api/v1/preserveservice/**
+          filters:
+            - name: RequestSize
+              args:
+                maxSize: 1B
 
         - id: price
           uri: lb://${PRICE_SERVICE_HOST:ts-price-service}
